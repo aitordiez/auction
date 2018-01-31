@@ -99,4 +99,27 @@ public class Auction
             return null;
         }
     }
+    
+    /**
+     * Este método debe iterar a través de la colección de lotes e imprimir los 
+     * detalles de todos los lotes. Cualquier lote que tenga al menos una puja
+     * se considerará vendido, de modo que lo que estamos buscando son objetos 
+     * Lot cuyo campo highestBid no sea null. Utilice una variable local dentro
+     * del bucle para almacenar el valor devuelto por las llamadas al método 
+     * getHighestBid, y luego compruebe si dicha variable tiene el valor null. 
+     * Para lotes que tengan asignada una puja, los detalles deben incluir el 
+     * nombre de la persona que ha hecho la puja y el valor de esa puja mas alta
+     * Para los lotes por los que nadie haya pujado, imprima un mendaje que lo 
+     * indique.
+     */
+    public void close(){
+        for(Lot subasta : lots){
+            System.out.println(subasta.toString());
+            Bid pujaMasAlta = subasta.getHighestBid();
+            if(pujaMasAlta != null){
+                System.out.println("El nombre de la persona es: " + pujaMasAlta.getBidder().getName());
+                System.out.println("El valor de la puja es: " + pujaMasAlta.getValue());
+            }
+        }
+    }
 }
