@@ -139,5 +139,24 @@ public class Auction
         }
         return copiaLots;
     }
+    
+    /**
+     * Return the lot with the given number. Return null
+     * if a lot with this number does not exist.
+     * @param lotNumber The number of the lot to return.
+     */
+    public Lot getLots(int number)
+    {
+        Lot result = null;      
+        Iterator<Lot> i = lots.iterator();
+        while(i.hasNext())
+        {
+                Lot temp = i.next();
+                if (temp.getNumber() == number) {
+                   return temp;
+                }
+        }
+        return null;
+    }   
 }
 
