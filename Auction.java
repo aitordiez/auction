@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-
+import java.util.Iterator;
 /**
  * A simple model of an auction.
  * The auction maintains a list of lots of arbitrary length.
@@ -43,7 +43,7 @@ public class Auction
             System.out.println(lot.toString());
         }
     }
-    
+
     /**
      * Make a bid for a lot.
      * A message is printed indicating whether the bid is
@@ -60,13 +60,13 @@ public class Auction
             boolean successful = selectedLot.bidFor(new Bid(bidder, value));
             if(successful) {
                 System.out.println("The bid for lot number " +
-                                   lotNumber + " was successful.");
+                    lotNumber + " was successful.");
             }
             else {
                 // Report which bid is higher.
                 System.out.println("Lot number: " + lotNumber +
-                                   " already has a bid of: " +
-                                   selectedLot.getHighestBid().getValue());
+                    " already has a bid of: " +
+                    selectedLot.getHighestBid().getValue());
             }
         }
     }
@@ -85,9 +85,9 @@ public class Auction
             // right lot.
             if(selectedLot.getNumber() != lotNumber) {
                 System.out.println("Internal error: Lot number " +
-                                   selectedLot.getNumber() +
-                                   " was returned instead of " +
-                                   lotNumber);
+                    selectedLot.getNumber() +
+                    " was returned instead of " +
+                    lotNumber);
                 // Don't return an invalid lot.
                 selectedLot = null;
             }
@@ -95,11 +95,11 @@ public class Auction
         }
         else {
             System.out.println("Lot number: " + lotNumber +
-                               " does not exist.");
+                " does not exist.");
             return null;
         }
     }
-    
+
     /**
      * Este método debe iterar a través de la colección de lotes e imprimir los 
      * detalles de todos los lotes. Cualquier lote que tenga al menos una puja
@@ -122,4 +122,22 @@ public class Auction
             }
         }
     }
+
+    /**
+     * Este método debe iterar a través del campo lots, almacenando los lotes 
+     * no vendidos en una variable local ArrayList. Lo que estamos buscando son 
+     * los objetos Lot cuyo campo highestBid sea null. Al final del método, 
+     * devuelva la lista de los lotes no vendidos.
+     */
+    public ArrayList<Lot> getUnsold(){
+        ArrayList<Lot>copiaLots = new ArrayList<Lot>();
+        for(Lot elementos : lots){
+            Bid elementosNull = elementos.getHighestBid();
+            if(elementosNull == null){
+                copiaLots.add(elementos);
+            }
+        }
+        return copiaLots;
+    }
 }
+
