@@ -157,6 +157,25 @@ public class Auction
                 }
         }
         return null;
-    }   
+    }
+    
+    
+    /**
+     * Eliminar el lote con el número de lote especificado
+     * @param number El número del lote que hay que eliminar.
+     * @return El lote con el número dado o null si no existe
+     * tal lote.
+     */
+
+    public Lot removeLot(int number){
+        Lot lot = null;
+        if(number >= 1){
+            lot = getLot(number);
+        }
+        if(lot != null){
+            lots.remove(lot);
+        }
+        return lot;
+    }
 }
 
